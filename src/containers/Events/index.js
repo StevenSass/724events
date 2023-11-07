@@ -14,7 +14,7 @@ const EventList = () => {
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const filteredEvents = (
-    // changement sur le filtre
+    // changement sur le filtre ajout du filtre ligne 19
     (type
       ? data?.events.filter(event => event.type === type)
       : data?.events) || []
@@ -33,7 +33,7 @@ const EventList = () => {
     setType(evtType);
   };
 
-  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
+  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE +1);
   const typeList = new Set(data?.events.map((event) => event.type));
 
   return (

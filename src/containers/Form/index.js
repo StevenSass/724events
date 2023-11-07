@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
 import Button, { BUTTON_TYPES } from "../../components/Button";
-
-const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 1000); })
+// reduction de 200 pour permettre de bien recevoir la valeur et ne pas rejeter avec error
+const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 800); })
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
@@ -16,6 +16,8 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
+        // ajout de on success qui n'etait pas present
+        onSuccess();
       } catch (err) {
         setSending(false);
         onError(err);
